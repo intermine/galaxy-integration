@@ -32,7 +32,7 @@ function mineNode(mine) {
   var mineNode = document.createElement("tr"),
     mineRow = "<td>" + mine.name + "</td>" +
     "<td>" + mine.organisms.join(", ")
-    + "</td><td class='exportToMine'>" + mineNav(mine.url, fakeParams) + "</td>";
+    + "</td><td class='exportToMine'>" + mineNav(mine, fakeParams) + "</td>";
   mineNode.organisms = mine.organisms;
   mineNode.setAttribute("class", "mineEntry");
   mineNode.innerHTML = mineRow;
@@ -40,11 +40,11 @@ function mineNode(mine) {
 }
 
 function mineNav(mine, data) {
-return '<form action="' + mine +'/portal.do" name="list" method="post">' +
+return '<form action="' + mine.url +'/portal.do" name="list" method="post">' +
          '<input type="hidden" name="externalids" value="' +
                   fakeParams.identifiers.join(",") + '" />' +
          '<input type="hidden" name="class" value="' +
                   fakeParams.identifierType  + '" />' +
-         '<input type="submit" value="Submit" />' +
+         '<input type="submit" value="Send to ' + mine.name +'" />' +
        '</form>'
 }
