@@ -1,3 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+#interMinesList .exportToMine {
+  min-width: 10em;
+}
+#interMinesList tr:nth-child(even) {
+  background-color: #eef;
+}
