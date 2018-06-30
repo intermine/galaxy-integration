@@ -3,7 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>Choose your InterMine</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+      <script>
+      //get all interMines
+      $.ajax("http://registry.intermine.org/service/instances").then(function(response){
+        var mines = response.instances;
+        var minesList = document.getElementById("interMinesList");
+
+        //debug. remove when done.
+        console.log(mines);
+
+        //create a new mine dom node
+        //and add it to the list of mines
+        mines.map(function(mine){
+          minesList.append(mineNode(mine));
+        });
+
+      });
+
+      function mineNode(mine) {
+        //create new mineNode
+        var mineNode = document.createElement("a"),
+        link = document.createTextNode(mine.name);
+        mineNode.setAttribute("href",mine.url);
+        mineNode.organisms = mine.organisms;
+        mineNode.setAttribute("class","mineEntry");
+        mineNode.appendChild(link);
+
+        //I need content here from the mine variable TODO
+
+        return mineNode;
+      }
+
+      function organismsToClassNames(organisms) {
+        console.log(organisms);
+      }
+    </script>
   </head>
   <body>
     <header>
